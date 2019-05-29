@@ -190,7 +190,7 @@ public class LogonDBBean {
 				String dbpasswd = rs.getString("passwd");
 				if(BCrypt.checkpw(shaPass, dbpasswd)) {
 					pstmt = conn.prepareStatement(
-							"updata member set name=?, address=?, tel=?"
+							"update member set name=?, address=?, tel=?"
 							+ "where id = ?");
 					pstmt.setString(1, member.getName());
 					pstmt.setString(2, member.getAddress());

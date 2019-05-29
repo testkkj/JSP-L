@@ -2,7 +2,7 @@ var status = true;
 
 $(document).ready(function() {
 	$("#register").click(function() {
-		$("main_auth").load("registerForm.jsp");
+		$("#main_auth").load("registerForm.jsp");
 	});
 	
 	$("#login").click(function() {
