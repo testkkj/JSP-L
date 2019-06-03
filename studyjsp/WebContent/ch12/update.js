@@ -1,31 +1,32 @@
 var wStatus = true;
 
-$(documnet).ready(function() {
+$(document).ready(function() {
 
-	$("#regist").click(function() {
+	$("#update").click(function() {
 		formCheckIt();
 		if (wStatus) {
-			var pageNum = $("#regist").val();
+			var pageNum = $("#update").val();
 
 			var query = {
 				subject : $("#subject").val(),
 				content : $("#content").val(),
 				passwd : $("#passwd").val(),
-				ref : $("#ref").val(),
-				re_step : $("#re_step").val(),
-				re_level : $("#re_level").val(),
 				num : $("#num").val()
 			};
 
 			$.ajax({
 				type : "POST",
-				url : "writePro.jsp",
+				url : "updatePro.jsp",
 				data : query,
 				success : function(data) {
 					if (data == 1) {
-						alert("글이 등록되었습니다.");
+						alert("글이 수정되었습니다.");
 						var query = "list.jsp?pageNum=" + pageNum;
 						$("#main_board").load(query);
+					} else {
+						alert("비밀번호 틀림.");
+						$("#passwd").val("");
+						$("#passwd").focus();
 					}
 				}
 			});
@@ -39,28 +40,26 @@ $(documnet).ready(function() {
 	});
 });
 
-function formcheckIt() {
-	wstatus = true;
-
+function formCheckIt() {
+	wStatus = true;
 	if (!$.trim($("#subject").val())) {
-		alert("제목을 입력하세요");
+		alert("제목을 입력하세요.");
 		$("#subject").focus();
-		wstatus = false;
+		wStatus = false;
 		return false;
 	}
 
 	if (!$.trim($("#content").val())) {
-		alert("내용을 입력하세요");
+		alert("내용을 입력하세요.");
 		$("#content").focus();
-		wstatus = false;
+		wStatus = false;
 		return false;
 	}
 
 	if (!$.trim($("#passwd").val())) {
-		alert("비밀번호를 입력하세요");
+		alert("비밀번호를 입력하세요.");
 		$("#passwd").focus();
-		wstatus = false;
+		wStatus = false;
 		return false;
 	}
-
 }
