@@ -326,7 +326,54 @@ public class BoardDBBean {
 	}
 
 	public int deleteArticle(int num, String passwd) {
-		p=488;
-	}
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = -1;
+		try {
+			conn = getConnection();
 
+			pstmt = conn.prepareStatement("select passwd from board where num =?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String dbpasswd = rs.getString("passwd");
+				if (dbpasswd.equals(passwd)) {
+					pstmt = conn.prepareStatement("delete from board where num=?");
+					pstmt.setInt(1, num);
+					pstmt.executeUpdate();
+					x = 1;
+				} else {
+					x = 0;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+
+				}
+			}
+		}
+
+		return x;
+	}
 }
