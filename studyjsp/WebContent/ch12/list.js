@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$("#new").click(function() {
-		$("#main_board").load("writerForm.jsp");
+		$("#main_board").load("writeForm.jsp");
 	});
 });
 

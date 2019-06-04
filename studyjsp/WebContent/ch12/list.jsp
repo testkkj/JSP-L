@@ -6,8 +6,8 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/style.css" />
+<script src="../js/jquery-1.11.0.min.js"></script>
 <script src="list.js"></script>
 
 <%
@@ -75,7 +75,7 @@
 		<li class="layout_f">
 			<%
 				String writer = article.getWriter();
-						out.println(writer.substring(0, 4) + "****");
+						out.println(writer.substring(0, i) + "****");
 			%>
 		
 		<li class="layout_f">
